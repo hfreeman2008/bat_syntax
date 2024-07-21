@@ -754,32 +754,6 @@ adb push %~dp0\ATCLogger\ /system/app
 adb shell sync
 ```
 
----
-
-# call-调用bat脚本
-
-call 调用ucdos.bat脚本
-```bat
-call c:\ucdos\ucdos.bat
-```
----
-
-# start-命令
-
-批处理中调用外部程序的命令（该外部程序在新窗口中运行，批处理程序继续往下执行，不理会外部程序的运行状况），如果直接运行外部程序则必须等外部程序完成后才继续执行剩下的指令
-
-命令1：
-调用图形界面打开D盘
-```bat
-start explorer d:\
-```
-
-命令2：
-打开当前文件的路径：
-```bat
-start explorer %cd%
-```
-
 
 
 
@@ -804,12 +778,6 @@ IF ERRORLEVEL 2 ECHO 用户通过ctrl-c中止拷贝操作 
 IF ERRORLEVEL 3 ECHO 预置错误阻止文件拷贝操作 
 IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误
 ```
-
-
-
-
-
-
 
 
 
@@ -900,6 +868,43 @@ echo 3
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+## call-调用bat脚本
+
+call 调用ucdos.bat脚本
+```bat
+call c:\ucdos\ucdos.bat
+```
+---
+
+## start-命令
+
+批处理中调用外部程序的命令（该外部程序在新窗口中运行，批处理程序继续往下执行，不理会外部程序的运行状况），如果直接运行外部程序则必须等外部程序完成后才继续执行剩下的指令
+
+命令1：
+调用图形界面打开D盘
+```bat
+start explorer d:\
+```
+
+命令2：
+打开当前文件的路径：
+```bat
+start explorer %cd%
+```
 
 
 
