@@ -943,62 +943,7 @@ echo good bye
 
 
 
----
 
-# find-在文件中搜索字符串
-
-查看find帮助命令：
-```bat
-find /?
-```
-
-
-输出：
-```bat
-在文件中搜索字符串。
-
-FIND [/V] [/C] [/N] [/I] [/OFF[LINE]] "string" [[drive:][path]filename[ ...]]
-
-  /V         显示所有未包含指定字符串的行。
-  /C         仅显示包含字符串的行数。
-  /N         显示行号。
-  /I         搜索字符串时忽略大小写。
-  /OFF[LINE] 不要跳过具有脱机属性集的文件。
-  "string" 指定要搜索的文本字符串。
-  [drive:][path]filename
-             指定要搜索的文件。
-
-如果没有指定路径，FIND 将搜索在提示符处键入
-的文本或者由另一命令产生的文本。
-```
-
-
-
-Find常和type命令结合使用
-```bat
-Type [drive:][path]filename | find "string" [>tmpfile] #挑选包含string的行
-Type [drive:][path]filename | find /v "string" #剔除文件中包含string的行
-Type [drive:][path]filename | find /c #显示文件行数
-```
-
-
-命令：
-```bat
-@echo off
-echo 111 >test.txt
-echo 222 >>test.txt
-find "111" test.txt
-find /n "111" test.txt
-```
-
----
-
-# pushd和popd-切换当前目录
-
-```bat
-pushd c:\mp3            #保存当前目录，并切换当前目录为 c:\mp3
-popd                    #恢复当前目录为刚才保存的 d:\mp4
-```
 
 ---
 
@@ -1045,16 +990,131 @@ pause
 # !-感叹号
 在变量延迟问题中，用来表示变量，即%var%应该表示为!var!，
 
+
 ---
 
-# md-创建文件夹
+
+
+# ^-转义字符
+
+^是对特殊符号<,>,&的前导字符，在命令中他将以上3个符号的特殊功能去掉，仅仅只把他们当成符号而不使用他们的特殊意义。
+
+---
+
+# ()-括号
+小括号在批处理编程中有特殊的作用，左右括号必须成对使用，括号中可以包括多行命令，这些命令将被看成一个整体，视为一条命令行。
+
+ 括号在for语句和if语句中常见，用来嵌套使用循环或条件语句，其实括号()也可以单独使用。
+
+命令：
+```bat
+echo 1 & echo 2 & echo 3
+```
+
+可以写成：
+```bat
+(
+echo 1
+echo 2
+echo 3
+)
+```
+
+上面两种写法效果一样，这两种写法都被视为是一条命令行。
+
+
+注意：这种多条命令被视为一条命令行时，如果其中有变量，就涉及到变量延迟的问题。
+
+---
+
+# 常用命令
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+## find-在文件中搜索字符串
+
+查看find帮助命令：
+```bat
+find /?
+```
+
+
+输出：
+```bat
+在文件中搜索字符串。
+
+FIND [/V] [/C] [/N] [/I] [/OFF[LINE]] "string" [[drive:][path]filename[ ...]]
+
+  /V         显示所有未包含指定字符串的行。
+  /C         仅显示包含字符串的行数。
+  /N         显示行号。
+  /I         搜索字符串时忽略大小写。
+  /OFF[LINE] 不要跳过具有脱机属性集的文件。
+  "string" 指定要搜索的文本字符串。
+  [drive:][path]filename
+             指定要搜索的文件。
+
+如果没有指定路径，FIND 将搜索在提示符处键入
+的文本或者由另一命令产生的文本。
+```
+
+
+
+Find常和type命令结合使用
+```bat
+Type [drive:][path]filename | find "string" [>tmpfile] #挑选包含string的行
+Type [drive:][path]filename | find /v "string" #剔除文件中包含string的行
+Type [drive:][path]filename | find /c #显示文件行数
+```
+
+
+命令：
+```bat
+@echo off
+echo 111 >test.txt
+echo 222 >>test.txt
+find "111" test.txt
+find /n "111" test.txt
+```
+
+
+---
+
+## pushd和popd-切换当前目录
+
+```bat
+pushd c:\mp3            #保存当前目录，并切换当前目录为 c:\mp3
+popd                    #恢复当前目录为刚才保存的 d:\mp4
+```
+
+
+---
+
+## md-创建文件夹
 ```bat
 md mp3
 ```
 
 ---
 
-# attrib-显示或更改文件属性
+## attrib-显示或更改文件属性
 
 查看attrib帮助命令：
 ```bat
@@ -1096,14 +1156,9 @@ md autorun
 attrib +a +s +h autorun
 ```
 
-
 ---
 
-# cls-清屏命令
-
----
-
-# eof
+## eof
 是“end of file”的缩写
 在批处理作用主要有二：
 - 在无call的情况下，会直接退出批处理，此时等同于exit
@@ -1111,7 +1166,11 @@ attrib +a +s +h autorun
 
 ---
 
-# random-随机数
+## cls-清屏命令
+
+---
+
+## random-随机数
 
 %RANDOM% 系统变量 返回 0 到 32767 之间的任意十进制数字。由 Cmd.exe 生成。2的15次方等于32768，上面的0～32767实际就是15位二进制数的范围。
 
@@ -1166,39 +1225,7 @@ pause
 
 ---
 
-# ^-转义字符
-
-^是对特殊符号<,>,&的前导字符，在命令中他将以上3个符号的特殊功能去掉，仅仅只把他们当成符号而不使用他们的特殊意义。
-
----
-
-# ()-括号
-小括号在批处理编程中有特殊的作用，左右括号必须成对使用，括号中可以包括多行命令，这些命令将被看成一个整体，视为一条命令行。
-
- 括号在for语句和if语句中常见，用来嵌套使用循环或条件语句，其实括号()也可以单独使用。
-
-命令：
-```bat
-echo 1 & echo 2 & echo 3
-```
-
-可以写成：
-```bat
-(
-echo 1
-echo 2
-echo 3
-)
-```
-
-上面两种写法效果一样，这两种写法都被视为是一条命令行。
-
-
-注意：这种多条命令被视为一条命令行时，如果其中有变量，就涉及到变量延迟的问题。
-
----
-
-# shutdown-关机
+## shutdown-关机
 
 帮助命令
 ```bat
@@ -1318,12 +1345,6 @@ shutdown -r -f -t 1
 shutdown -a
 ```
 
-
----
-
-```bat
-
-```
 
 ---
 
