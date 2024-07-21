@@ -1111,6 +1111,62 @@ attrib +a +s +h autorun
 
 ---
 
+# random-随机数
+
+%RANDOM% 系统变量 返回 0 到 32767 之间的任意十进制数字。由 Cmd.exe 生成。2的15次方等于32768，上面的0～32767实际就是15位二进制数的范围。
+
+那么，如何获取100以内的随机数呢？
+
+很简单，将%RANDOM%按100进行求余运算即可。
+
+命令1:
+生成5个100以内的随机数
+```bat
+@echo off
+setlocal enabledelayedexpansion
+for /L %%i in (1 1 5) do (
+  set /a randomNum=!random!%%100
+  echo random_value: !randomNum!
+)
+pause
+```
+
+输出：
+```bat
+random_value: 50
+random_value: 0
+random_value: 68
+random_value: 59
+random_value: 43
+```
+
+产生[min,max]区间里的随机数通用的公式:
+```bat
+%random%%%(max-min+1)+min
+```
+
+
+获得4到12之间的随机数：
+```bat
+@REM 产生10个[4,12]间的随机数
+@echo off
+REM 启用延迟环境变量扩展
+setlocal enabledelayedexpansion
+REM 设置随机数的最小和最大值以及求模用的变量
+set min=4
+set max=12
+set /a mod=!max!-!min!+1
+for /l %%i in (1,1,10) do (
+REM 产生[min,max]之间的随机数
+set /a r=!random!%%!mod!+!min!
+echo.
+echo random_value %%i:!r!)
+pause
+```
+
+---
+
+
 ```bat
 
 ```
