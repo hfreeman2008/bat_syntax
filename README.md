@@ -837,109 +837,8 @@ IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误
 ```
 
 
----
-
-# title-设置窗口的标题
-
-```bat
-title "hello_title"
-```
 
 
----
-
-
-# color-设置控制台前景和背景颜色
-
-查看帮助命令：
-```bat
-color /?
-```
-
-输出：
-```bat
-设置默认的控制台前景和背景颜色。
-COLOR [attr]
-  attr        指定控制台输出的颜色属性。
-
-颜色属性由两个十六进制数字指定 -- 第一个对应于背景，第二个对应于前景。每个数字可以为以下任何值:
-    0 = 黑色       8 = 灰色
-    1 = 蓝色       9 = 淡蓝色
-    2 = 绿色       A = 淡绿色
-    3 = 浅绿色     B = 淡浅绿色
-    4 = 红色       C = 淡红色
-    5 = 紫色       D = 淡紫色
-    6 = 黄色       E = 淡黄色
-    7 = 白色       F = 亮白色
-
-如果没有给定任何参数，此命令会将颜色还原到 CMD.EXE 启动时的颜色。这个值来自当前控制台窗口、/T 命令行开关或 DefaultColor 注册表值。
-
-如果尝试使用相同的前景和背景颜色来执行
- COLOR 命令，COLOR 命令会将 ERRORLEVEL 设置为 1。
-
-示例: "COLOR fc" 在亮白色上产生淡红色
-```
-
-
-
-黑景亮白字：
-```bat
-color 0f
-```
-
----
-
-# choice
-使用此命令可以让用户输入一个字符（用于选择），从而根据用户的选择返回不同errorlevel，然后于if errorlevel配合，根据用户的选择运行不同的命令。
-
-查看帮助命令：
-```bat
-choice /?
-```
-
-输出：
-```bat
-CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]
-描述:
-    该工具允许用户从选择列表选择一个项目并返回所选项目的索引。
-参数列表:
-   /C    choices       指定要创建的选项列表。默认列表是 "YN"。
-   /N                  在提示符中隐藏选项列表。提示前面的消息得到显示，选项依旧处于启用状态。
-   /CS                 允许选择分大小写的选项。在默认情况下，这个工具是不分大小写的。
-   /T    timeout       做出默认选择之前，暂停的秒数。可接受的值是从 0到 9999。如果指定了 0，就不会有暂停，默认选项会得到选择。
-   /D    choice        在 nnnn 秒之后指定默认选项。字符必须在用 /C 选项指定的一组选择中; 同时，必须用 /T 指定 nnnn。
-   /M    text          指定提示之前要显示的消息。如果没有指定，工具只显示提示。
-   /?                  显示此帮助消息。
-
-   注意:
-   ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的ERRORLEVEL 值。
-   如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0 的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降序排列。
-
-示例:
-   CHOICE /?
-   CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。"
-   CHOICE /T 10 /C ync /CS /D y
-   CHOICE /C ab /M "选项 1 请选择 a，选项 2 请选择 b。"
-   CHOICE /C ab /N /M "选项 1 请选择 a，选项 2 请选择 b。"
-```
-
-
-test.bat的内容如下（注意，用if errorlevel判断返回值时，要按返回值从高到低排列）: 
-```bat
-@echo off 
-choice /C dme /M "defrag,mem,end"
-if errorlevel 3 goto end
-if errorlevel 2 goto mem 
-if errotlevel 1 goto defrag
-:defrag 
-c:\dos\defrag 
-goto end
-:mem 
-mem 
-goto end
-:end 
-echo good bye
-```
 
 
 
@@ -1037,13 +936,109 @@ echo 3
 
 
 
+---
+
+## title-设置窗口的标题
+
+```bat
+title "hello_title"
+```
+
+
+---
+
+## color-设置控制台前景和背景颜色
+
+查看帮助命令：
+```bat
+color /?
+```
+
+输出：
+```bat
+设置默认的控制台前景和背景颜色。
+COLOR [attr]
+  attr        指定控制台输出的颜色属性。
+
+颜色属性由两个十六进制数字指定 -- 第一个对应于背景，第二个对应于前景。每个数字可以为以下任何值:
+    0 = 黑色       8 = 灰色
+    1 = 蓝色       9 = 淡蓝色
+    2 = 绿色       A = 淡绿色
+    3 = 浅绿色     B = 淡浅绿色
+    4 = 红色       C = 淡红色
+    5 = 紫色       D = 淡紫色
+    6 = 黄色       E = 淡黄色
+    7 = 白色       F = 亮白色
+
+如果没有给定任何参数，此命令会将颜色还原到 CMD.EXE 启动时的颜色。这个值来自当前控制台窗口、/T 命令行开关或 DefaultColor 注册表值。
+
+如果尝试使用相同的前景和背景颜色来执行
+ COLOR 命令，COLOR 命令会将 ERRORLEVEL 设置为 1。
+
+示例: "COLOR fc" 在亮白色上产生淡红色
+```
 
 
 
+黑景亮白字：
+```bat
+color 0f
+```
 
 
+---
+
+## choice
+使用此命令可以让用户输入一个字符（用于选择），从而根据用户的选择返回不同errorlevel，然后于if errorlevel配合，根据用户的选择运行不同的命令。
+
+查看帮助命令：
+```bat
+choice /?
+```
+
+输出：
+```bat
+CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]
+描述:
+    该工具允许用户从选择列表选择一个项目并返回所选项目的索引。
+参数列表:
+   /C    choices       指定要创建的选项列表。默认列表是 "YN"。
+   /N                  在提示符中隐藏选项列表。提示前面的消息得到显示，选项依旧处于启用状态。
+   /CS                 允许选择分大小写的选项。在默认情况下，这个工具是不分大小写的。
+   /T    timeout       做出默认选择之前，暂停的秒数。可接受的值是从 0到 9999。如果指定了 0，就不会有暂停，默认选项会得到选择。
+   /D    choice        在 nnnn 秒之后指定默认选项。字符必须在用 /C 选项指定的一组选择中; 同时，必须用 /T 指定 nnnn。
+   /M    text          指定提示之前要显示的消息。如果没有指定，工具只显示提示。
+   /?                  显示此帮助消息。
+
+   注意:
+   ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的ERRORLEVEL 值。
+   如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0 的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降序排列。
+
+示例:
+   CHOICE /?
+   CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。"
+   CHOICE /T 10 /C ync /CS /D y
+   CHOICE /C ab /M "选项 1 请选择 a，选项 2 请选择 b。"
+   CHOICE /C ab /N /M "选项 1 请选择 a，选项 2 请选择 b。"
+```
 
 
+test.bat的内容如下（注意，用if errorlevel判断返回值时，要按返回值从高到低排列）: 
+```bat
+@echo off 
+choice /C dme /M "defrag,mem,end"
+if errorlevel 3 goto end
+if errorlevel 2 goto mem 
+if errotlevel 1 goto defrag
+:defrag 
+c:\dos\defrag 
+goto end
+:mem 
+mem 
+goto end
+:end 
+echo good bye
+```
 
 
 ---
