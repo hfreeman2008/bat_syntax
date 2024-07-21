@@ -590,6 +590,28 @@ pause
 
 ---
 
+# errorlevel-程序返回码
+```bat
+echo %errorlevel%
+```
+
+IF ERRORLEVEL 是用来测试它的上一个DOS命令的返回值的，注意只是上一个命令的返回值，而且返回值必须依照从大到小次序顺序判断。
+
+因此下面的批处理文件是错误的：
+```bat
+@ECHO OFF 
+XCOPY C:\AUTOEXEC.BAT D:\ 
+IF ERRORLEVEL 0 ECHO 成功拷贝文件 
+IF ERRORLEVEL 1 ECHO 未找到拷贝文件 
+IF ERRORLEVEL 2 ECHO 用户通过ctrl-c中止拷贝操作 
+IF ERRORLEVEL 3 ECHO 预置错误阻止文件拷贝操作 
+IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误
+```
+
+
+---
+
+
 
 # 参考资料
 
