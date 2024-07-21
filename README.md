@@ -342,17 +342,132 @@ pause
 ---
 
 
+# 函数
+
+## 函数定义
+以:func开始以goto:eof结束。:func和goto:eof之间的为函数内容
+
+```bat
+:func
+echo this is a bat func
+goto:eof
+```
+
+## 函数调用 call:func
+```bat
+call:func
+pause
+
+:func
+echo this is a bat func
+goto:eof
+```
 
 
+## bat函数返回值
+目前bat函数返回值的获取有如下两种方法：
+- 使用参数带回
+- 使用全局变量带回
+```bat
+echo off
+color 0d
+echo bat Function example
+
+echo =================================
+echo ==========Func No paramter ======
+echo =================================
+echo before call myFuncNoPara
+call:myFuncNoPara
+echo after call myFuncNoPara
+
+echo =================================
+echo ===========Func has 2 paramter=====
+echo =================================
+echo before call myFuncHasPara
+call:myFuncHasPara 123 abc
+echo after call myFuncHasPara
 
 
+echo =================================
+echo =======Func with return value====
+echo =================================
+set return=123
+set returnPara=321
+echo return:%return%
+echo returnPara:%returnPara%
+echo befora call myFuncReturnValue
+call:myFuncReturnValue returnPara abc
+echo after call myFuncReturnValue
+echo return:%return%
+echo returnPara:%returnPara%
 
+pause
+goto:eof
+ 
+pause
 
+:myFuncNoPara
+echo myFuncNoPara enter
+echo myFuncNoPara First para:%1
+echo myFuncNoPara Second para:%2
+echo myFuncNoPara Third para:%3
+::pause
+::echo myFuncNoPara exit
+goto:eof
+ 
+:myFuncHasPara
+echo myFuncHasPara enter
+echo myFuncHasPara First para:%1
+echo myFuncHasPara Second para:%2
+echo myFuncHasPara Third para:%3
+::pause
+::echo myFuncHasPara exit
+goto:eof
+ 
+:myFuncReturnValue
+echo myFuncReturnValue
+echo myFuncReturnValue First para:%1
+echo myFuncReturnValue Second para:%2
+set "%~1=%2%"
+set return=%2
+::pause
+goto:eof
+```
 
-
-
-
-
+输出：
+```bat
+bat Function example
+=================================
+==========Func No paramter ======
+=================================
+before call myFuncNoPara
+myFuncNoPara enter
+myFuncNoPara First para:
+myFuncNoPara Second para:
+myFuncNoPara Third para:
+after call myFuncNoPara
+=================================
+===========Func has 2 paramter=====
+=================================
+before call myFuncHasPara
+myFuncHasPara enter
+myFuncHasPara First para:123
+myFuncHasPara Second para:abc
+myFuncHasPara Third para:
+after call myFuncHasPara
+=================================
+=======Func with return value====
+=================================
+return:123
+returnPara:321
+befora call myFuncReturnValue
+myFuncReturnValue
+myFuncReturnValue First para:returnPara
+myFuncReturnValue Second para:abc
+after call myFuncReturnValue
+return:abc
+returnPara:abc
+```
 
 
 ---
