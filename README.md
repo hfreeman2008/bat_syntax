@@ -79,6 +79,18 @@ cd Z:\LINUX\android\out\target\product\
 
 ---
 
+# 本地路径
+
+%~dp0\
+
+```bat
+adb push %~dp0\ATCLogger\ /system/app
+adb shell sync
+```
+
+---
+
+
 ```bat
 
 ```
