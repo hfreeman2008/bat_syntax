@@ -549,28 +549,6 @@ for /l %%i in (1,1,5) do @echo %%i
 pause
 ```
 
----
-
-
-# goto
-
-批处理文件运行到这里将跳到goto所指定的标号(标号即label，标号用:后跟标准字符串来定义)处，goto语句一般与if配合使用，根据不同的条件来执行不同的命令组。
-
-命令1：
-```bat
-goto end
-:end 
-echo this is the end
-```
-
-标号用“:字符串”来定义，标号所在行不被执行。
-```bat
-:start
-set /a var+=1
-echo %var%
-if %var% leq 3 GOTO start
-pause
-```
 
 ---
 
@@ -703,46 +681,6 @@ returnPara:abc
 ```
 
 
-
----
-
-# >  >> 建立新文件或增加文件内容
-
-格式：
-
-```bat
-ECHO 文件内容>文件名
-ECHO 文件内容>>文件名
-```
-
-\>>  追加信息到指定文件
-```bat
-ping sz.tencent.com > a.txt
-ping sz1.tencent.com >> a.txt
-.......
-ping sz7.tencent.com >> a.txt
-exit
-```
-
----
-
-# pause-暂停
-
-运行此句会暂停批处理的执行并在屏幕上显示Press any key to continue...的提示，等待用户按任意键后继续
-
-```bat
-pause
-```
-
----
-
-# cd-进入路径
-
-```bat
-Z:
-cd Z:\LINUX\android\out\target\product\
-```
-
 ---
 
 # 本地路径
@@ -753,11 +691,6 @@ cd Z:\LINUX\android\out\target\product\
 adb push %~dp0\ATCLogger\ /system/app
 adb shell sync
 ```
-
-
-
-
-
 
 ---
 
@@ -872,12 +805,67 @@ echo 3
 
 
 
+---
 
 
+## goto
 
+批处理文件运行到这里将跳到goto所指定的标号(标号即label，标号用:后跟标准字符串来定义)处，goto语句一般与if配合使用，根据不同的条件来执行不同的命令组。
 
+命令1：
+```bat
+goto end
+:end 
+echo this is the end
+```
 
+标号用“:字符串”来定义，标号所在行不被执行。
+```bat
+:start
+set /a var+=1
+echo %var%
+if %var% leq 3 GOTO start
+pause
+```
 
+---
+
+## >  >> 建立新文件或增加文件内容
+
+格式：
+
+```bat
+ECHO 文件内容>文件名
+ECHO 文件内容>>文件名
+```
+
+\>>  追加信息到指定文件
+```bat
+ping sz.tencent.com > a.txt
+ping sz1.tencent.com >> a.txt
+.......
+ping sz7.tencent.com >> a.txt
+exit
+```
+
+---
+
+## pause-暂停
+
+运行此句会暂停批处理的执行并在屏幕上显示Press any key to continue...的提示，等待用户按任意键后继续
+
+```bat
+pause
+```
+
+---
+
+## cd-进入路径
+
+```bat
+Z:
+cd Z:\LINUX\android\out\target\product\
+```
 
 
 ---
