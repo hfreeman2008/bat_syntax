@@ -143,7 +143,7 @@ DATE =  2024/07/21 周日
 
 ## 自定义变量
 
-使用自定义变量就得使用set命令
+- 使用自定义变量就得使用set命令
 
 ```bat
 @echo off
@@ -152,7 +152,20 @@ echo var=  %var%
 pause
 ```
 
-如果我们想让用户手工输入变量的值,而不是在代码里指定,可以用用set命令的/p参数
+- set变量的使用
+
+```bat
+set YYYYmmdd=%date:~0,4%%date:~5,2%%date:~8,2%
+set hhmiss=%time:~0,2%%time:~3,2%%time:~6,2%
+set filename=%YYYYmmdd%_%hhmiss%
+
+adb shell screencap /sdcard/%filename%.png
+adb pull /sdcard/%filename%.png ./screen_ui/%filename%.png
+```
+
+
+
+- 如果我们想让用户手工输入变量的值,而不是在代码里指定,可以用用set命令的/p参数
 
 ```bat
 @echo off
