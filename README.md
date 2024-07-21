@@ -1002,6 +1002,50 @@ popd                    #恢复当前目录为刚才保存的 d:\m
 
 ---
 
+# setlocal与变量延迟
+```bat
+@echo off
+setlocal enabledelayedexpansion
+for /l %%i in (1,1,5) do (
+set a=%%i
+echo !a!
+)
+pause
+```
+
+
+输出:
+```bat
+1
+2
+3
+4
+5
+```
+
+
+交换两个变量的值，且不用中间变量
+
+```bat
+@echo off
+::目的：交换两个变量的值，但是不使用临时变量
+::Code by JM 2007-1-24 [email=CMD@XP]CMD@XP[/email]
+::出处：http://www.cn-dos.net/forum/viewthread.php?tid=27078
+set var1=abc
+set var2=123
+echo 交换前： var1=%var1% var2=%var2%
+set var1=%var2% & set var2=%var1%
+echo 交换后： var1=%var1% var2=%var2%
+pause
+```
+
+---
+
+
+# !-感叹号
+在变量延迟问题中，用来表示变量，即%var%应该表示为!var!，
+
+---
 
 ```bat
 
