@@ -214,6 +214,42 @@ dir z:\ & dir y:\ & dir c:\
 
 ---
 
+# if-条件语句
+
+## 查看if帮助命令
+```bat
+if /?
+```
+
+输出：
+
+```bat
+执行批处理程序中的条件处理。
+
+IF [NOT] ERRORLEVEL number command
+IF [NOT] string1==string2 command
+IF [NOT] EXIST filename command
+
+  NOT               指定只有条件为 false 的情况下，Windows 才应该执行该命令。
+
+  ERRORLEVEL number 如果最后运行的程序返回一个等于或大于指定数字的退出代码，指定条件为 true。
+
+  string1==string2  如果指定的文字字符串匹配，指定条件为 true。
+
+  EXIST filename    如果指定的文件名存在，指定条件为 true。
+
+  command           如果符合条件，指定要执行的命令。如果指定的
+                    条件为 FALSE，命令后可跟 ELSE 命令，该命令将
+                    在 ELSE 关键字之后执行该命令。
+
+ELSE 子句必须出现在同一行上的 IF 之后。例如:
+
+    IF EXIST filename. (
+        del filename.
+    ) ELSE (
+        echo filename. missing.
+    )
+```
 
 
 
