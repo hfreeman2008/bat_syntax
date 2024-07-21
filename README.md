@@ -217,10 +217,36 @@ dir z:\ & dir y:\ & dir c:\
 
 
 
+
+
+
+
+
+
 ---
 
 ```bat
 
+```
+
+---
+
+# >  >> 建立新文件或增加文件内容
+
+格式：
+
+```bat
+ECHO 文件内容>文件名
+ECHO 文件内容>>文件名
+```
+
+\>>  追加信息到指定文件
+```bat
+ping sz.tencent.com > a.txt
+ping sz1.tencent.com >> a.txt
+.......
+ping sz7.tencent.com >> a.txt
+exit
 ```
 
 ---
