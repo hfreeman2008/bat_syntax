@@ -69,7 +69,15 @@ pause
 
 ---
 
+# cd-进入路径
 
+```bat
+Z:
+cd Z:\LINUX\android\out\target\product\
+```
+
+
+---
 
 ```bat
 
