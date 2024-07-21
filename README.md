@@ -90,12 +90,19 @@ adb shell sync
 
 ---
 
+# call-调用bat脚本
+
+call 调用ucdos.bat脚本
+```bat
+call c:\ucdos\ucdos.bat
+```
+
+---
+
 
 ```bat
 
 ```
-
-
 ---
 
 
