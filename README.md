@@ -251,11 +251,42 @@ ELSE 子句必须出现在同一行上的 IF 之后。例如:
     )
 ```
 
+- 命令1：
+
+```bat
+if "%1"=="a" format a:
+```
+
+- 命令2：
+如果存在c:\config.sys文件，则显示它的内容。
+```bat
+if exist c:\config.sys type c:\config.sys 
+```
 
 
+- 命令3：
+```bat
+if errorlevel 2 goto x2
+```
+
+- 增强用法：
+加上/I就不区分大小写
+```bat
+if [/I] string1 compare-op string2 command
+```
+
+增强用法中还有一些用来判断数字的符号：
+```bat
+EQU - 等于
+NEQ - 不等于
+LSS - 小于
+LEQ - 小于或等于
+GTR - 大于
+GEQ - 大于或等于
+```
 
 
-
+---
 
 
 
