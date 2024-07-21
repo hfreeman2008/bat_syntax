@@ -1099,6 +1099,10 @@ attrib +a +s +h autorun
 
 ---
 
+# cls-清屏命令
+
+---
+
 ```bat
 
 ```
