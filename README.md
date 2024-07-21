@@ -1103,6 +1103,14 @@ attrib +a +s +h autorun
 
 ---
 
+# eof
+是“end of file”的缩写
+在批处理作用主要有二：
+- 在无call的情况下，会直接退出批处理，此时等同于exit
+- 在call的情况下，会中止call，继续执行其他命令
+
+---
+
 ```bat
 
 ```
