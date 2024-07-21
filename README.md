@@ -141,9 +141,40 @@ DATE =  2024/07/21 周日
 
 ---
 
-## 自定义变量
+## 自定义变量-set
 
-- 使用自定义变量就得使用set命令
+- set帮助命令：
+```bat
+set /? 
+```
+
+输出:
+```bat
+显示、设置或删除 cmd.exe 环境变量。
+SET [variable=[string]]
+  variable  指定环境变量名。
+  string    指定要指派给变量的一系列字符串。
+要显示当前环境变量，键入不带参数的 SET。
+
+如果命令扩展被启用，SET 会如下改变:
+
+可仅用一个变量激活 SET 命令，等号或值不显示所有前缀匹配
+SET 命令已使用的名称的所有变量的值。例如:
+    SET P
+
+会显示所有以字母 P 打头的变量
+
+如果在当前环境中找不到该变量名称，SET 命令将把 ERRORLEVEL
+设置成 1。
+
+SET 命令不允许变量名含有等号。
+
+在 SET 命令中添加了两个新命令行开关:
+    SET /A expression
+    SET /P variable=[promptString]
+```
+
+- 命令1：
 
 ```bat
 @echo off
