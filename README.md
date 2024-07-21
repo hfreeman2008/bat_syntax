@@ -150,8 +150,8 @@ copy %0 d:\wind.bat
 
 ```bat
 @echo off
-set var=我是值
-echo %var%
+set var=10
+echo var=  %var%
 pause
 ```
 
@@ -159,8 +159,8 @@ pause
 
 ```bat
 @echo off
-set /p var=请输入变量的值
-echo %var%
+set /p var=pleaes input value
+echo var= %var%
 pause
 ```
 
