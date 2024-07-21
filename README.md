@@ -555,6 +555,42 @@ start explorer %cd%
 
 ---
 
+# 时间延迟
+
+## (1)利用ping命令延时
+解说：用到了ping命令的“/n”参数，表示要发送多少次请求到指定的ip。
+
+本例中要发送5次请求到本机的ip（127.0.0.1）。127.0.0.1可简写为127.1。“>nul”就是屏蔽掉ping命令所显示的内容。
+```bat
+@echo off
+echo before time: %time%
+ping /n 5 127.0.0.1 >nul
+echo after  time: %time%
+pause
+```
+
+ 
+## (2)choice 睡眠几秒钟：
+```bat
+:: sleep 6 second
+choice /t 6 /d y /n >nul
+```
+
+
+## (3)利用for命令延时
+```bat
+@echo off
+echo before: %time%
+for /l %%i in (1,1,50000) do echo %%i>nul
+echo after : %time%
+pause
+```
+
+
+
+---
+
+
 # 参考资料
 
 
