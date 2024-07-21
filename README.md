@@ -319,6 +319,27 @@ GEQ - 大于或等于
 
 ---
 
+# goto
+
+批处理文件运行到这里将跳到goto所指定的标号(标号即label，标号用:后跟标准字符串来定义)处，goto语句一般与if配合使用，根据不同的条件来执行不同的命令组。
+
+命令1：
+```bat
+goto end
+:end 
+echo this is the end
+```
+
+标号用“:字符串”来定义，标号所在行不被执行。
+```bat
+:start
+set /a var+=1
+echo %var%
+if %var% leq 3 GOTO start
+pause
+```
+
+---
 
 
 
