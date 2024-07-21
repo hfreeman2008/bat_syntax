@@ -993,7 +993,14 @@ find /n "111" test.txt
 
 ---
 
+# pushd和popd-切换当前目录
 
+```bat
+pushd c:\mp3            #保存当前目录，并切换当前目录为 c:\mp3
+popd                    #恢复当前目录为刚才保存的 d:\mp4
+```
+
+---
 
 
 ```bat
