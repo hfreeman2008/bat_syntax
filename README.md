@@ -130,7 +130,6 @@ copy %0 d:\wind.bat
 他们的值由系统将其根据事先定义的条件自动赋值,也就是这些变量系统已经给他们定义了值,不需要我们来给他赋值,我们只需要调用.
 
 
-
 ```bat
 %ALLUSERSPROFILE% 本地 返回“所有用户”配置文件的位置。
 %APPDATA% 本地 返回默认情况下应用程序存储数据的位置。
@@ -141,6 +140,36 @@ copy %0 d:\wind.bat
 %COMSPEC%  系统 返回命令行解释器可执行程序的准确路径。
 %DATE%  系统 返回当前日期。使用与 date /t 命令相同的格式。由 Cmd.exe 生成有关
 ```
+
+- 命令：
+```bat
+@echo off
+echo ALLUSERSPROFILE =  %ALLUSERSPROFILE%
+echo APPDATA =  %APPDATA%
+echo CD =  %CD%
+echo CMDCMDLINE =  %CMDCMDLINE%
+echo CMDEXTVERSION =  %CMDEXTVERSION%
+echo COMPUTERNAME =  %COMPUTERNAME%
+echo COMSPEC =  %COMSPEC%
+echo DATE =  %DATE%
+
+pause
+```
+
+
+- 输出：
+
+```bat
+ALLUSERSPROFILE =  C:\ProgramData
+APPDATA =  C:\Users\240500008\AppData\Roaming
+CD =  D:\bat测试
+CMDCMDLINE =  C:\Windows\system32\cmd.exe /c ""D:\bat测试\test.bat" "
+CMDEXTVERSION =  2
+COMPUTERNAME =  HYT240500008
+COMSPEC =  C:\Windows\system32\cmd.exe
+DATE =  2024/07/21 周日
+```
+
 
 ---
 
