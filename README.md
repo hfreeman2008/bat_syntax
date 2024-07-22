@@ -1364,6 +1364,13 @@ ERASE [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
 删除的文件，而不显示找不到的文件。
 ```
 
+---
+
+# 参考资料
+
+1.bat 
+
+https://baike.baidu.com/item/bat/365230
 
 
 ---
