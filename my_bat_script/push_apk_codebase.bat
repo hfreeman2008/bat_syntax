@@ -5,10 +5,13 @@
 
 @echo off
 
+
+
 Z:
-cd Z:\hexiaoming\sc780_5_14\out\target\product\qssi
+::cd Z:\hexiaoming\sc780_5_14\out\target\product\qssi
 ::cd Z:\hexiaoming\sc780_5_14\out\target\product\bengal
 ::cd Z:\hexiaoming\sc580_R2.0_Pat\out\target\product\qssi
+cd Z:\hexiaoming\orig_codebase_sc780\out\target\product\qssi
 
 
 ::adb root
@@ -428,26 +431,63 @@ adb push system\app\%apkName% /system/app/
 ::framework-res
 ::adb push system\framework\framework-res.apk /system/framework/framework-res.apk
 
+
+
+
 ::framework services
 ::adb push system\framework /system/framework
 ::adb push system\framework /system/
+call:push_path system\framework /system/
 
 
 
-::if errorlevel 0 adb reboot
-::if errorlevel 0 adb shell svc power shutdown
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::call:reboot:::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+call:reboot
 pause
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::call:power_shutdown:::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+::call:power_shutdown
+::pause
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::reboot::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:reboot
+::if errorlevel 0 adb reboot
+adb reboot
+goto:eof
+
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::power_shutdown::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:power_shutdown
+::if errorlevel 0 adb shell svc power shutdown
+adb shell svc power shutdown
+goto:eof
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::function defined start::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::call:push_path_system_app DreamDevicePolicyServer
 ::call:push_path_system_priv_app DreamDevicePolicyServer
 ::call:push_path system\app\DreamDevicePolicyServer  system\app\
 
 :push_path
-echo push_path First para:%1
-echo push_path Second para:%2
+::echo push_path First para:%1
+::echo push_path Second para:%2
 adb push %1 %2
 goto:eof
+
 
 
 :push_path_system_app
@@ -463,3 +503,7 @@ goto:eof
 set apk_name_temp=%1
 adb push  system\priv-app\%apk_name_temp% /system/priv-app/
 goto:eof
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::function defined end::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::
