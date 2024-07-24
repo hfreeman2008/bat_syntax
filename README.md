@@ -1459,6 +1459,15 @@ ERASE [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
 
 ---
 
+## notepad
+
+使用notepad打开txt之类的文件
+```bat
+notepad  hello.txt
+```
+
+---
+
 # 参考资料
 
 1.bat 
