@@ -967,6 +967,59 @@ call c:\ucdos\ucdos.bat
 
 批处理中调用外部程序的命令（该外部程序在新窗口中运行，批处理程序继续往下执行，不理会外部程序的运行状况），如果直接运行外部程序则必须等外部程序完成后才继续执行剩下的指令
 
+
+```bat
+启动一个单独的窗口以运行指定的程序或命令。
+
+START ["title"] [/D path] [/I] [/MIN] [/MAX] [/SEPARATE | /SHARED]
+      [/LOW | /NORMAL | /HIGH | /REALTIME | /ABOVENORMAL | /BELOWNORMAL]
+      [/NODE <NUMA node>] [/AFFINITY <hex affinity mask>] [/WAIT] [/B]
+      [command/program] [parameters]
+
+    "title"     在窗口标题栏中显示的标题。
+    path        启动目录。
+    B           启动应用程序，但不创建新窗口。
+                应用程序已忽略 ^C 处理。除非应用程序
+                启用 ^C 处理，否则 ^Break 是唯一可以中断
+                该应用程序的方式。
+    I           新的环境将是传递
+                给 cmd.exe 的原始环境，而不是当前环境。
+    MIN         以最小化方式启动窗口。
+    MAX         以最大化方式启动窗口。
+    SEPARATE    在单独的内存空间中启动 16 位 Windows 程序。
+    SHARED      在共享内存空间中启动 16 位 Windows 程序。
+    LOW         在 IDLE 优先级类中启动应用程序。
+    NORMAL      在 NORMAL 优先级类中启动应用程序。
+    HIGH        在 HIGH 优先级类中启动应用程序。
+    REALTIME    在 REALTIME 优先级类中启动应用程序。
+    ABOVENORMAL 在 ABOVENORMAL 优先级类中启动应用程序。
+    BELOWNORMAL 在 BELOWNORMAL 优先级类中启动应用程序。
+    NODE        将首选非一致性内存结构(NUMA)节点指定为
+                十进制整数。
+    AFFINITY    将处理器关联掩码指定为十六进制数字。
+                进程被限制在这些处理器上运行。
+
+                将 /AFFINITY 和 /NODE 结合使用时，会对关联掩码
+                进行不同的解释。指定关联掩码，以便将零位作为起始位置(就如将 NUMA
+                节点的处理器掩码向右移位一样)。
+                进程被限制在指定关联掩码和 NUMA 节点之间的
+                那些通用处理器上运行。
+                如果没有通用处理器，则进程被限制在
+                指定的 NUMA 节点上运行。
+    WAIT        启动应用程序并等待它终止。
+    command/program
+                如果它是内部 cmd 命令或批文件，则
+                该命令处理器是使用 cmd.exe 的 /K 开关运行的。
+                这表示运行该命令之后，该窗口
+                将仍然存在。
+
+                如果它不是内部 cmd 命令或批文件，则
+                它就是一个程序，并将作为一个窗口化应用程序或
+                控制台应用程序运行。
+
+    parameters  这些是传递给 command/program 的参数。
+```
+
 命令1：
 调用图形界面打开D盘
 ```bat
@@ -979,6 +1032,10 @@ start explorer d:\
 start explorer %cd%
 ```
 
+命令3：
+```bat
+start /NODE 1 application1.exe
+```
 
 
 ---
