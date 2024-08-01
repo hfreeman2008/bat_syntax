@@ -209,20 +209,25 @@ adb shell wm size >> %file_name_wm_size%
 
 
 
-
-
 ::adb shell cat /proc/kmsg
+::set isEnableKmsg=true
+::set isEnableKmsg=false
+if /I "%isEnableKmsg%"=="true" (
 set file_name_proc_kmsg=%pull_data_root%/%data_path%/proc_kmsg.txt
 echo "====== adb shell cat /proc/kmsg ======> %file_name_proc_kmsg%"
 echo "======================================>> %file_name_proc_kmsg%"
 adb shell cat /proc/kmsg >> %file_name_proc_kmsg%
+)
 
 ::adb shell dmesg
+::set isEnableDmesg=true
+::set isEnableDmesg=false
+if /I "%isEnableDmesg%"=="true" (
 set file_name_dmesg=%pull_data_root%/%data_path%/dmesg.txt
 echo "====== adb shell dmesg ======> %file_name_dmesg%"
 echo "======================================>> %file_name_dmesg%"
 adb shell dmesg >> %file_name_dmesg%
-
+)
 
 
 ::adb shell procrank
@@ -234,11 +239,14 @@ adb shell procrank >> %file_name_procrank%
 
 
 ::adb shell vmstat 2 10
-::set file_name_vmstat=%pull_data_root%/%data_path%/vmstat.txt
-::echo "====== adb shell vmstat 2 10 ======> %file_name_vmstat%"
-::echo "======================================>> %file_name_vmstat%"
-::adb shell vmstat 2 10 >> %file_name_vmstat%
-
+::set isEnableVmstat=true
+::set isEnableVmstat=false
+if /I "%isEnableVmstat%"=="true" (
+set file_name_vmstat=%pull_data_root%/%data_path%/vmstat.txt
+echo "====== adb shell vmstat 2 10 ======> %file_name_vmstat%"
+echo "======================================>> %file_name_vmstat%"
+adb shell vmstat 2 10 >> %file_name_vmstat%
+)
 
 
 ::adb bugreport
