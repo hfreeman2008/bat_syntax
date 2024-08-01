@@ -300,6 +300,15 @@ GTR - 大于
 GEQ - 大于或等于
 ```
 
+- 命令4：
+```bat
+set isEnable=true
+echo isEnable=  %isEnable%
+if /I "%isEnable%"=="true" (
+echo .
+)
+```
+
 
 ---
 
