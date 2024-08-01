@@ -242,11 +242,17 @@ adb shell procrank >> %file_name_procrank%
 
 
 ::adb bugreport
+::set isEnableBugreport=true
+::set isEnableBugreport=false
+if /I "%isEnableBugreport%"=="true" (
 set file_name_bugreport=%pull_data_root%/%data_path%/bugreport/
 echo "====== adb bugreport ======> %file_name_bugreport%"
 echo "====================================== %file_name_dropbox%"
 adb bugreport
 adb pull /data/user_de/0/com.android.shell/files/bugreports/ ./%file_name_bugreport%
+)
+
+
 
 
 
