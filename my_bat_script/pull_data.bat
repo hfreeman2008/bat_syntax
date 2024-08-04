@@ -1,7 +1,7 @@
 :: author hexiaoming
 :: pull_data.bat
 
-::@echo off
+@echo off
 
 @title "hexiaoming pull_data.bat"
 @color 0f
@@ -51,11 +51,12 @@ adb pull /data/system/dropbox/ ./%file_name_dropbox%
 
 ::adb pull /data/system/packages.xml ./data_system/
 ::adb pull /data/system/packages.list ./data_system/
-set file_name_data_system=%pull_data_root%/%data_path%/data_system/
+set file_name_data_system=%pull_data_root%/%data_path%/datasystem/
 echo "====== adb pull/data/system/packages.xml ======> %file_name_data_system%"
 echo "====================================== %file_name_data_system%"
-adb pull /data/system/packages.xml ./%file_name_data_system%
-adb pull /data/system/packages.list ./%file_name_data_system%
+::adb pull /data/system/packages.xml ./%file_name_data_system%
+::adb pull /data/system/packages.list ./%file_name_data_system%
+adb pull /data/system/  ./%file_name_data_system%
 
 
 ::anr
@@ -209,27 +210,6 @@ adb shell wm size >> %file_name_wm_size%
 
 
 
-::adb shell cat /proc/kmsg
-::set isEnableKmsg=true
-::set isEnableKmsg=false
-if /I "%isEnableKmsg%"=="true" (
-set file_name_proc_kmsg=%pull_data_root%/%data_path%/proc_kmsg.txt
-echo "====== adb shell cat /proc/kmsg ======> %file_name_proc_kmsg%"
-echo "======================================>> %file_name_proc_kmsg%"
-adb shell cat /proc/kmsg >> %file_name_proc_kmsg%
-)
-
-::adb shell dmesg
-::set isEnableDmesg=true
-::set isEnableDmesg=false
-if /I "%isEnableDmesg%"=="true" (
-set file_name_dmesg=%pull_data_root%/%data_path%/dmesg.txt
-echo "====== adb shell dmesg ======> %file_name_dmesg%"
-echo "======================================>> %file_name_dmesg%"
-adb shell dmesg >> %file_name_dmesg%
-)
-
-
 ::adb shell procrank
 set file_name_procrank=%pull_data_root%/%data_path%/procrank.txt
 echo "====== adb shell procrank ======> %file_name_procrank%"
@@ -239,28 +219,53 @@ adb shell procrank >> %file_name_procrank%
 
 
 ::adb shell vmstat 2 10
-::set isEnableVmstat=true
 ::set isEnableVmstat=false
-if /I "%isEnableVmstat%"=="true" (
+set isEnableVmstat=true
+if /i "%isEnableVmstat%"=="true" (
 set file_name_vmstat=%pull_data_root%/%data_path%/vmstat.txt
 echo "====== adb shell vmstat 2 10 ======> %file_name_vmstat%"
 echo "======================================>> %file_name_vmstat%"
 adb shell vmstat 2 10 >> %file_name_vmstat%
+) else (
+echo "======do not vmstat ======
 )
+
+
+
+::adb shell cat /proc/kmsg
+::set isEnableKmsg=false
+set isEnableKmsg=true
+if /i "%isEnableKmsg%"=="true" (
+set file_name_proc_kmsg=%pull_data_root%/%data_path%/proc_kmsg.txt
+echo "====== adb shell cat /proc/kmsg ======> %file_name_proc_kmsg%"
+echo "======================================>> %file_name_proc_kmsg%"
+adb shell cat /proc/kmsg >> %file_name_proc_kmsg%
+) else (
+echo "======do not kmsg ======
+)
+
+
+
+::adb shell dmesg
+::set file_name_dmesg=%pull_data_root%/%data_path%/dmesg.txt
+::echo "====== adb shell dmesg ======> %file_name_dmesg%"
+::echo "======================================>> %file_name_dmesg%"
+::adb shell dmesg >> %file_name_dmesg%
+
 
 
 ::adb bugreport
-::set isEnableBugreport=true
 ::set isEnableBugreport=false
-if /I "%isEnableBugreport%"=="true" (
+set isEnableBugreport=true
+if /i "%isEnableBugreport%"=="true" (
 set file_name_bugreport=%pull_data_root%/%data_path%/bugreport/
 echo "====== adb bugreport ======> %file_name_bugreport%"
-echo "====================================== %file_name_dropbox%"
+echo "====================================== %file_name_bugreport%"
 adb bugreport
 adb pull /data/user_de/0/com.android.shell/files/bugreports/ ./%file_name_bugreport%
+) else (
+echo "======do not bugreport ======
 )
-
-
 
 
 
