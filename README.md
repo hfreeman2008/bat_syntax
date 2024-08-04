@@ -307,6 +307,16 @@ echo isEnable=  %isEnable%
 if /I "%isEnable%"=="true" (
 echo .
 )
+
+::set isEnableBugreport=false
+set isEnableBugreport=true
+if /i "%isEnableBugreport%"=="true" (
+echo "====== adb bugreport ======>
+adb bugreport
+) else (
+echo "======do not bugreport ======
+)
+
 ```
 
 
